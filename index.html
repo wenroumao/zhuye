@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .btn {
+            width: 170px;
+            height: 60px;
+            font-size: 18px;
+            background: #fff;
+            border: none;
+            border-radius: 50px;
+            color: #000;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+
+        .btn:hover {
+            box-shadow: inset 0 0 0 4px #ef476f,
+                inset 0 0 0 8px #ffd166,
+                inset 0 0 0 12px #06d6a0,
+                inset 0 0 0 16px #118ab2;
+            background: #073b4c;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 视频元素 -->
+    <video autoplay muted loop>
+        <source src="lullaby of the ocean by visualdon_1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- 按钮和覆盖层 -->
+    <div class="overlay">
+        <button class="btn" onclick="window.location.href='your-target-page.html'">点击进入</button>
+    </div>
+    <audio id="myAudio" controls autoplay loop>
+        <!-- 提供多个音频源，以便浏览器选择支持的格式 -->
+        <source src="music/lullaby of the ocean by visualdon.mp3" type="audio/mp3">
+        <source src="" type="audio/ogg">
+        你的浏览器暂不支持
+    </audio>
+</body>
+<script>
+    // 在页面加载完毕后，自动播放音频
+    window.addEventListener("load", function () {
+        // 添加交互事件，例如点击页面
+        document.body.addEventListener("click", function playAudio() {
+            // 尝试播放音频
+            audio.play().then(() => {
+                // 播放成功
+                console.log("音频已自动播放");
+                // 移除交互事件，以免重复触发
+                document.body.removeEventListener("click", playAudio);
+            }).catch((error) => {
+                // 播放失败，可能由于浏览器政策限制
+                console.error("音频自动播放失败:", error);
+            });
+        });
+    });
+</script>
+
+</html>
